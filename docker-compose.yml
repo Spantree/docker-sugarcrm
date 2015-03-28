@@ -1,7 +1,7 @@
 sugarcrm:
   build: .
   ports:
-    - "280:80"
+    - "2080:80"
   links:
     - "db"
   environment:
