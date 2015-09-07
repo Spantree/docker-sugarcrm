@@ -1,8 +1,8 @@
 FROM php:5.6-apache
 
 ENV MAJOR_VERSION 6.5
-ENV MINOR_VERSION 20
-ENV SOURCEFORGE_MIRROR http://softlayer-dal.dl.sourceforge.net
+ENV MINOR_VERSION 22
+ENV SOURCEFORGE_MIRROR http://downloads.sourceforge.net
 ENV WWW_FOLDER /var/www/html
 
 RUN apt-get update && apt-get upgrade -y && \
@@ -13,7 +13,7 @@ RUN docker-php-ext-install mysql curl gd zip mbstring
 
 WORKDIR /tmp
 
-RUN curl -O "${SOURCEFORGE_MIRROR}/project/sugarcrm/1%20-%20SugarCRM%20${MAJOR_VERSION}.X/SugarCommunityEdition-${MAJOR_VERSION}.X/SugarCE-${MAJOR_VERSION}.${MINOR_VERSION}.zip" && \
+RUN curl -L -O "${SOURCEFORGE_MIRROR}/project/sugarcrm/1%20-%20SugarCRM%20${MAJOR_VERSION}.X/SugarCommunityEdition-${MAJOR_VERSION}.X/SugarCE-${MAJOR_VERSION}.${MINOR_VERSION}.zip" && \
 	unzip SugarCE-${MAJOR_VERSION}.${MINOR_VERSION}.zip && \
 	rm -rf ${WWW_FOLDER}/* && \
 	cp -R /tmp/SugarCE-Full-${MAJOR_VERSION}.${MINOR_VERSION}/* ${WWW_FOLDER}/ && \
