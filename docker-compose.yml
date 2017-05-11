@@ -7,10 +7,11 @@ sugarcrm:
   environment:
     DB_TYPE: mysql
     DB_MANAGER: MysqlManager
+    DB_TCP_PORT: 3307
 db:
   image: mysql
   ports:
-    - "3306:3306"
+    - "3307:3306"
   environment:
     MYSQL_ROOT_PASSWORD: YZiT4p7BXUqpdgpc
     MYSQL_DATABASE: sugarcrm
