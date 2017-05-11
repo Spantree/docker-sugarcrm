@@ -6,7 +6,7 @@ ENV SOURCEFORGE_MIRROR http://downloads.sourceforge.net
 ENV WWW_FOLDER /var/www/html
 
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y libcurl4-gnutls-dev libpng-dev unzip cron re2c php5-imap python curl php5-curl php5-gd php5-mysql
+    apt-get install -y libcurl4-gnutls-dev libpng-dev unzip cron re2c php5-imap python curl php5-curl php5-gd php5-mysql libpcre3-dev
 
 RUN docker-php-ext-install mysql curl gd zip mbstring
 #	apt-get install -y php5-mysql php5-imap php5-curl php5-gd curl unzip cron
@@ -30,6 +30,14 @@ RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
 
 ADD config_override.php.pyt /usr/local/src/config_override.php.pyt
 ADD envtemplate.py /usr/local/bin/envtemplate.py
+
+ENV APACHE_RUN_USER=www-data
+ENV APACHE_RUN_GROUP=www-data
+ENV APACHE_LOG_DIR=/var/log/apache2
+ENV APACHE_LOCK_DIR=/var/lock/apache2
+ENV APACHE_RUN_DIR=/var/run/apache2
+ENV APACHE_PID_FILE=/var/run/apache2.pid
+
 ADD init.sh /usr/local/bin/init.sh
 
 RUN chmod u+x /usr/local/bin/init.sh
