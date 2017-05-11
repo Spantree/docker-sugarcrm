@@ -6,7 +6,7 @@ ENV SOURCEFORGE_MIRROR http://downloads.sourceforge.net
 ENV WWW_FOLDER /var/www/html
 
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y libcurl4-gnutls-dev libpng-dev unzip cron re2c php5-imap python curl php5-curl php5-gd php5-mysql
+    apt-get install -y libcurl4-gnutls-dev libpng-dev unzip cron re2c php5-imap python curl php5-curl php5-gd php5-mysql libpcre3-dev
 
 RUN docker-php-ext-install mysql curl gd zip mbstring
 #	apt-get install -y php5-mysql php5-imap php5-curl php5-gd curl unzip cron
